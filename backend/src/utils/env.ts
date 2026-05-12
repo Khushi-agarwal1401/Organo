@@ -24,10 +24,10 @@ if (!JWT_SECRET) {
   throw new Error("JWT_SECRET is required. Set it in your environment (.env)");
 }
 if (!GOOGLE_PLACES_API_KEY) {
-  throw new Error("GOOGLE_PLACES_API_KEY is required. Set it in your environment (.env)");
+  console.warn("⚠️  GOOGLE_PLACES_API_KEY not set – nearby-services endpoint will be unavailable");
 }
 if (!RAZORPAY_KEY_ID || !RAZORPAY_KEY_SECRET) {
-  throw new Error("RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET are required in .env");
+  console.warn("⚠️  RAZORPAY_KEY_ID / RAZORPAY_KEY_SECRET not set – payment endpoint will be unavailable");
 }
 if (Number.isNaN(GST_RATE) || GST_RATE < 0) {
   throw new Error("GST_RATE must be a valid number (e.g., 0.05 for 5%)");
@@ -52,9 +52,9 @@ export const env = {
   CORS_ORIGIN: CORS_ORIGIN as string,
   JWT_SECRET: JWT_SECRET as string,
   JWT_EXPIRES_IN: JWT_EXPIRES_IN as string,
-  GOOGLE_PLACES_API_KEY: GOOGLE_PLACES_API_KEY as string,
-  RAZORPAY_KEY_ID: RAZORPAY_KEY_ID as string,
-  RAZORPAY_KEY_SECRET: RAZORPAY_KEY_SECRET as string,
+  GOOGLE_PLACES_API_KEY: GOOGLE_PLACES_API_KEY ?? "",
+  RAZORPAY_KEY_ID: RAZORPAY_KEY_ID ?? "",
+  RAZORPAY_KEY_SECRET: RAZORPAY_KEY_SECRET ?? "",
   GST_RATE,
   DELIVERY_FEE,
   SUBSCRIPTION_DISCOUNT,
